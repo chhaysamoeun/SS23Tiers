@@ -1,0 +1,100 @@
+﻿@{
+}
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="DepartmentId" class="form-lable">Department</label>
+                <select name="DepartmentId" id="DepartmentId" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <label for="PositionId" class="form-lable">Position</label>
+                <select name="PositionId" id="PositionId" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <label for="EmployeeName" class="form-lable">Employee Name</label>
+                <input name="EmployeeName" id="EmployeeName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="DateOfBirth" class="form-lable">Date Of Birth</label>
+                <input type="date" name="DateOfBirth" id="DateOfBirth" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="PhoneNumber" class="form-lable">Phone Number</label>
+                <input name="PhoneNumber" id="PhoneNumber" class="form-control" />
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label for="PlaceOfBirth" class="form-lable">Place Of Birth</label>
+                <textarea name="PlaceOfBirth" id="PlaceOfBirth" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="Address" class="form-lable">Address</label>
+                <textarea name="Address" id="Address" class="form-control"></textarea>
+            </div>
+            <br/>
+            <button class="btn btn-primary" id="save"> Save</button>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        var baseUrl = "https://localhost:7122/api/";
+        var departmentOpt = "<option>Select...</option>";
+        var positionOpt = "<option>Select...</option>";
+        $(document).ready(function () {
+            $("#save").click(function () {
+                var employee = {
+                    "EmployeeName": $("#EmployeeName").val(),
+                    "DateOfBirth": $("#DateOfBirth").val(),
+                    "PhoneNumber": $("#PhoneNumber").val(),
+                    "PlaceOfBirth": $("#PlaceOfBirth").val(),
+                    "Address": $("#Address").val(),
+                    "DepartmentId": $("#DepartmentId").val(),
+                    "PositionId": $("#PositionId").val()
+                };
+                $.ajax({
+                    method: "POST",
+                    url: baseUrl + "Employee",
+                    data: JSON.stringify(employee),
+                    contentType: "application/json",
+                    success: function (response, status, http) {
+                        if (http.status === 201) {
+                            window.location.href = "/Employee/Index";
+                        }
+                    }, error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+            $.ajax({
+                method: "GET",
+                url: baseUrl + "Department",
+                contentType: "application/json",
+                success: function (data) {
+                    $.each(data, function (i, v) {
+                        departmentOpt += "<option value='"+ v.departmentId +"'>"+ v.departmentName +"</option>";
+                    });
+                    $("#DepartmentId").append(departmentOpt);
+                }, error: function (error) {
+                    console.log(error);
+                }
+            });
+            $.ajax({
+                method: "GET",
+                url: baseUrl + "Position",
+                contentType: "application/json",
+                success: function (data) {
+                    $.each(data, function (i, v) {
+                        positionOpt += "<option value='" + v.positionId + "'>" + v.positionName + "</option>";
+                    });
+                    $("#PositionId").append(positionOpt);
+                }, error: function (error) {
+                    console.log(error);
+                }
+            });
+        });
+    </script>
+}
+

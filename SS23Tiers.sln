@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1704.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SS23Tiers.Api", "SS23Tiers.Api\SS23Tiers.Api.csproj", "{3057F5E8-A9B9-42E5-BA3F-03AF8FA9486B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SS23Tiers.Web", "SS23Tiers.Web\SS23Tiers.Web.csproj", "{D9DF1D94-2345-4896-9F37-CA36016B6151}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3057F5E8-A9B9-42E5-BA3F-03AF8FA9486B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3057F5E8-A9B9-42E5-BA3F-03AF8FA9486B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3057F5E8-A9B9-42E5-BA3F-03AF8FA9486B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3057F5E8-A9B9-42E5-BA3F-03AF8FA9486B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9DF1D94-2345-4896-9F37-CA36016B6151}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9DF1D94-2345-4896-9F37-CA36016B6151}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9DF1D94-2345-4896-9F37-CA36016B6151}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9DF1D94-2345-4896-9F37-CA36016B6151}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1FB510D1-0D6A-4E53-9A27-BD7B18B377FD}
+	EndGlobalSection
+EndGlobal

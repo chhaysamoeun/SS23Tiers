@@ -1,0 +1,78 @@
+﻿@{
+    ViewData["Title"] = "Employee Page";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <a href="/Employee/Create" class="btn btn-primary"> Create New</a>
+        </div>
+        <div class="col-4">
+            <img src="images/loading.gif" id="loading" />
+        </div>
+        <div class="col-4">
+
+        </div>
+    </div>
+   
+   <table class="table table-bordered" id="t1">
+       <thead>
+           <tr>
+               <th>EmployeeName</th>
+               <th>Date Of Birth</th>
+               <th>Phone Number</th>
+               <th>Position</th>
+               <th>Department</th>
+               <th>Address</th>
+               <th>Action</th>
+           </tr>
+       </thead>
+       <tbody></tbody>
+   </table>
+</div>
+@section Scripts{
+    <script>
+        var baseUrl = "https://localhost:7122/api/";
+        $("#loading").show();
+        $(document).ready(function () {
+            $.ajax({
+                method: "GET",
+                url: "https://localhost:7122/api/Employee",
+                contentType: "application/json",
+                success: function (data) {
+                    $.each(data, function (i, v) {
+                        console.log(v);
+                        var row = "<tr><td>" + v.employeeName;
+                        row += "</td><td>" + v.dateOfBirth;
+                        row += "</td><td>" + v.phoneNumber;
+                        row += "</td><td>" + v.position["positionName"];
+                        row += "</td><td>" + v.department["departmentName"];
+                        row += "</td><td>" + v.address;
+                        row += "</td><td><a href='#'><i class='fa-sharp fa-solid fa-pen-to-square'></i></a>";
+                        row += " | <a class='btn btn-danger' href='#' onClick=Delete('"+ v.employeeId +"');><i class='fa-sharp fa-solid fa-trash'></i></a></td></tr>";
+                        $("#t1").append(row);
+                    });
+                    $("#loading").hide();
+                }, error: function (error) {
+                    console.log(error);
+                    $("#loading").hide();
+                }
+            });
+        });
+        function Delete(id) {
+            var result = confirm("Do you want to delete it?");
+            if (result) {
+                $.ajax({
+                    method: "DELETE",
+                    url: baseUrl + "Employee/" + id,
+                    success: function (response) {
+                        window.location.reload();
+                    }, error: function (error) {
+                        console.log(error);
+                    }
+                });
+            }
+        }
+    </script>
+}
+
